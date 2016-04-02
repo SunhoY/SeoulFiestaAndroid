@@ -44,6 +44,7 @@
         />
 
     <TextView
+        android:id="@+id/login"
         android:text="로그인"
         android:textSize="30sp"
         android:gravity="center"
