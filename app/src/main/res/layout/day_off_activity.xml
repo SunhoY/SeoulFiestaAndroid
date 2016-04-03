@@ -2,27 +2,99 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical">
 
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="@dimen/primaryHeight"
+        android:layout_height="wrap_content"
+        android:textSize="48sp"
+        android:layout_marginTop="@dimen/marginToParent"
         android:text="휴가 신청"
+        android:textStyle="bold"
+        android:textColor="@color/colorPrimary"
+        android:gravity="center"
         />
 
-    <Spinner
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/primaryHeight"
-        android:layout_marginStart="@dimen/marginToParent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="@dimen/marginToParent"
-        />
+        android:layout_marginStart="@dimen/marginToParent"
+        android:gravity="end"
+        >
+        <TextView
+            android:id="@+id/department"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            tools:text="지주사업부"
+            />
+        <TextView
+            android:layout_marginStart="16dp"
+            android:id="@+id/rank"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            tools:text="대리"
+            />
+        <TextView
+            android:layout_marginStart="16dp"
+            android:id="@+id/user_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:text="양해리"
+            />
+    </LinearLayout>
 
-    <DatePicker
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/primaryHeight"
-        />
-    <EditText
-        android:lines="5"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/primaryHeight" />
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="@dimen/marginToParent"
+        android:layout_marginStart="@dimen/marginToParent"
+        android:gravity="end"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:text="잔여 휴가일"
+            />
+        <TextView
+            android:id="@+id/remaining_vacations"
+            android:layout_marginStart="16dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            tools:text="10"
+            />
+        <TextView
+            android:layout_marginStart="16dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:text="일"
+            />
+    </LinearLayout>
+
+    <!--<Spinner-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="@dimen/primaryHeight"-->
+        <!--android:layout_marginStart="@dimen/marginToParent"-->
+        <!--android:layout_marginEnd="@dimen/marginToParent"-->
+        <!--/>-->
+
+    <!--<DatePicker-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="@dimen/primaryHeight"-->
+        <!--/>-->
+    <!--<EditText-->
+        <!--android:lines="5"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="@dimen/primaryHeight" />-->
 </LinearLayout>

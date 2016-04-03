@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 
 import dagger.Module;
 import dagger.Provides;
+import io.harry.seoulfiesta.activity.DayOffActivity;
 import io.harry.seoulfiesta.activity.LoginActivity;
 import io.harry.seoulfiesta.api.UserApi;
 import io.harry.seoulfiesta.service.UserService;
@@ -12,8 +13,9 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 @Module(injects = {
-    LoginActivity.class,
-    UserService.class
+        LoginActivity.class,
+        UserService.class,
+        DayOffActivity.class,
 })
 public class ApplicationModule {
     public static final String SHARED_PREFERENCES_NAME = "SeoulFiesta";
