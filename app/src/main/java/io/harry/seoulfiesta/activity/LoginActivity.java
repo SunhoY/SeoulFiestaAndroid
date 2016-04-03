@@ -51,7 +51,7 @@ public class LoginActivity extends BaseActivity {
 
     @OnLongClick(R.id.secret_login)
     public boolean onSecretLogin() {
-        email.setText("harry");
+        email.setText("harry@harry.io");
         password.setText("harry.io");
         return true;
     }

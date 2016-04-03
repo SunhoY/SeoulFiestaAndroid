@@ -40,18 +40,21 @@ public class UserServiceTest extends BaseTest {
     public void login_callsLoginApiOnUserApi_runsSuccessCallback_onSuccess() throws Exception {
         ServiceCallback mockServiceCallback = mock(ServiceCallback.class);
         User user = new User();
-        user.userName = "harry";
+        user.email = "harry@harry.io";
         user.password = "secure";
 
         Call<User> mockCall = mock(Call.class);
         when(userApi.userLogin(user)).thenReturn(mockCall);
-        subject.login("harry", "secure", mockServiceCallback);
+        subject.login("harry@harry.io", "secure", mockServiceCallback);
 
         verify(userApi).userLogin(user);
         verify(mockCall).enqueue(userCallbackCaptor.capture());
         User responseBody = new User();
-        user.userName = "harry";
-        user.password = "!@";
+        user.id = 23;
+        user.userName = "양해리";
+        user.email = "harry@harry.io";
+        user.rank = "대리";
+        user.department = "연구소";
 
         Response<User> response = Response.success(responseBody);
         userCallbackCaptor.getValue().onResponse(mockCall, response);

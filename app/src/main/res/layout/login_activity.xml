@@ -21,7 +21,7 @@
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:textSize="24sp"
-        android:hint="user name"
+        android:hint="email address"
         android:inputType="textVisiblePassword"
         android:drawableStart="@drawable/ic_user"
         android:drawablePadding="20dp"

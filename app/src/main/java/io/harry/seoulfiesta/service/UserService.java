@@ -16,9 +16,9 @@ public class UserService {
         SeoulFiestaApplication.inject(this);
     }
 
-    public void login(String userName, String password, final ServiceCallback<User> serviceCallback) {
+    public void login(String email, String password, final ServiceCallback<User> serviceCallback) {
         User user = new User();
-        user.userName = userName;
+        user.email = email;
         user.password = password;
         Call<User> service = userApi.userLogin(user);
         service.enqueue(new Callback<User>() {
