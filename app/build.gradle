@@ -13,12 +13,9 @@ android {
     }
 
     productFlavors {
-        local {
-
-        }
-        staging {
-
-        }
+        local {}
+        development {}
+        staging {}
     }
 
     buildTypes {
