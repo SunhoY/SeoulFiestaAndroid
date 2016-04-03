@@ -1,6 +1,7 @@
 package io.harry.seoulfiesta;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 
 import dagger.Module;
 import dagger.Provides;
@@ -15,6 +16,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
     UserService.class
 })
 public class ApplicationModule {
+    public static final String SHARED_PREFERENCES_NAME = "SeoulFiesta";
     private Context context;
     private Retrofit retrofit;
 
@@ -23,9 +25,11 @@ public class ApplicationModule {
     }
 
     @Provides UserService provideUserService() { return new UserService(); }
-
+    @Provides UserApi provideUserApi() { return getRetrofit().create(UserApi.class); }
     @Provides
-    UserApi provideUserApi() { return getRetrofit().create(UserApi.class); }
+    SharedPreferences provideSharedPreferences() {
+        return context.getSharedPreferences(SHARED_PREFERENCES_NAME, Context.MODE_PRIVATE);
+    }
 
     Retrofit getRetrofit() {
         if(retrofit == null) {

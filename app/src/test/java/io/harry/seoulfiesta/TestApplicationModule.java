@@ -1,5 +1,7 @@
 package io.harry.seoulfiesta;
 
+import android.content.SharedPreferences;
+
 import javax.inject.Singleton;
 
 import dagger.Module;
@@ -23,5 +25,6 @@ import static org.mockito.Mockito.mock;
 )
 public class TestApplicationModule {
     @Provides @Singleton UserService provideUserService() { return mock(UserService.class); }
-    @Provides @Singleton UserApi providesUserApi() {return mock(UserApi.class);}
+    @Provides @Singleton UserApi provideUserApi() {return mock(UserApi.class);}
+    @Provides @Singleton SharedPreferences provideSharedPreferences() {return mock(SharedPreferences.class); }
 }

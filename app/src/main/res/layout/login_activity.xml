@@ -17,7 +17,7 @@
         />
 
     <EditText
-        android:id="@+id/user_name"
+        android:id="@+id/email"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:textSize="24sp"
@@ -40,7 +40,7 @@
         android:drawablePadding="20dp"
         android:drawableStart="@drawable/ic_key"
         android:layout_centerHorizontal="true"
-        android:layout_below="@id/user_name"
+        android:layout_below="@id/email"
         android:layout_marginTop="40dp"
         />
 

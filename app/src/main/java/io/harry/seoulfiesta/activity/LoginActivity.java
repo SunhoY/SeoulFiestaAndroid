@@ -1,6 +1,7 @@
 package io.harry.seoulfiesta.activity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -19,15 +20,25 @@ import io.harry.seoulfiesta.service.UserService;
 public class LoginActivity extends BaseActivity {
 
     @Inject UserService userService;
-    @Bind(R.id.user_name) EditText userName;
+    @Inject SharedPreferences sharedPreferences;
+
+    @Bind(R.id.email) EditText email;
     @Bind(R.id.password) EditText password;
     @Bind(R.id.secret_login) TextView secretLogin;
 
     @OnClick(R.id.login)
     public void onLoginClick() {
-        userService.login(userName.getText().toString(), password.getText().toString(), new ServiceCallback<User>() {
+        userService.login(email.getText().toString(), password.getText().toString(), new ServiceCallback<User>() {
             @Override
-            public void onSuccess(User object) {
+            public void onSuccess(User user) {
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putString("email", user.email);
+                editor.putString("rank", user.rank);
+                editor.putString("department", user.department);
+                editor.putString("userName", user.userName);
+                editor.putInt("id", user.id);
+                editor.apply();
+
                 startActivity(new Intent(LoginActivity.this, MenuActivity.class));
             }
 
@@ -40,7 +51,7 @@ public class LoginActivity extends BaseActivity {
 
     @OnLongClick(R.id.secret_login)
     public boolean onSecretLogin() {
-        userName.setText("harry");
+        email.setText("harry");
         password.setText("harry.io");
         return true;
     }
