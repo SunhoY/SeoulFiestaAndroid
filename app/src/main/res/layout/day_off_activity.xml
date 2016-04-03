@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/primaryHeight"
+        android:text="휴가 신청"
+        />
+
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/primaryHeight"
+        android:layout_marginStart="@dimen/marginToParent"
+        android:layout_marginEnd="@dimen/marginToParent"
+        />
+
+    <DatePicker
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/primaryHeight"
+        />
+    <EditText
+        android:lines="5"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/primaryHeight" />
+</LinearLayout>

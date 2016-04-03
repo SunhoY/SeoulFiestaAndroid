@@ -5,6 +5,7 @@
     android:layout_height="match_parent">
 
     <TextView
+        android:id="@+id/secret_login"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="48sp"
@@ -44,17 +45,10 @@
         />
 
     <TextView
+        style="@style/AppTheme.PrimaryButton"
         android:id="@+id/login"
         android:text="로그인"
-        android:textSize="30sp"
-        android:gravity="center"
-        android:textStyle="bold"
-        android:textColor="@color/lightSlate"
-        android:background="@color/colorPrimary"
-        android:layout_width="match_parent"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginBottom="20dp"
         android:layout_alignParentBottom="true"
-        android:layout_height="70dp" />
+        android:layout_marginBottom="20dp"
+        />
 </RelativeLayout>

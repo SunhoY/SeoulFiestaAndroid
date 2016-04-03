@@ -6,6 +6,7 @@ import dagger.Module;
 import dagger.Provides;
 import io.harry.seoulfiesta.activity.LoginActivity;
 import io.harry.seoulfiesta.activity.LoginActivityTest;
+import io.harry.seoulfiesta.activity.MenuActivityTest;
 import io.harry.seoulfiesta.api.UserApi;
 import io.harry.seoulfiesta.service.UserService;
 import io.harry.seoulfiesta.service.UserServiceTest;
@@ -17,6 +18,7 @@ import static org.mockito.Mockito.mock;
             LoginActivityTest.class,
             UserService.class,
             UserServiceTest.class,
+            MenuActivityTest.class,
         }
 )
 public class TestApplicationModule {

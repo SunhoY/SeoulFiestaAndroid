@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/day_off"
+        style="@style/AppTheme.PrimaryButton"
+        android:layout_marginTop="60dp"
+        android:text="휴가 신청"/>
+    <TextView
+        style="@style/AppTheme.PrimaryButton"
+        android:layout_marginTop="60dp"
+        android:text="휴일 근무"/>
+    <TextView
+        style="@style/AppTheme.PrimaryButton"
+        android:layout_marginTop="60dp"
+        android:text="연장 근무"/>
+
+</LinearLayout>

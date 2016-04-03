@@ -39,6 +39,7 @@ dependencies {
     compile 'com.jakewharton:butterknife:7.0.1'
     compile 'com.squareup.dagger:dagger:+'
     compile 'com.squareup.retrofit2:retrofit:2.0.0'
+    compile 'com.squareup.retrofit2:converter-gson:2.0.0'
     provided 'com.squareup.dagger:dagger-compiler:+'
 
     testCompile 'junit:junit:4.12'

@@ -1,13 +1,8 @@
-package io.harry.seoulfiesta.model;
+package io.harry.seoulfiesta.model.json;
 
 public class User {
-    private final String password;
-    private final String userName;
-
-    public User(String userName, String password) {
-        this.userName = userName;
-        this.password = password;
-    }
+    public String password;
+    public String userName;
 
     @Override
     public boolean equals(Object o) {

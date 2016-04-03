@@ -8,6 +8,7 @@ import io.harry.seoulfiesta.activity.LoginActivity;
 import io.harry.seoulfiesta.api.UserApi;
 import io.harry.seoulfiesta.service.UserService;
 import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 @Module(injects = {
     LoginActivity.class,
@@ -30,6 +31,7 @@ public class ApplicationModule {
         if(retrofit == null) {
             retrofit = new Retrofit.Builder()
                     .baseUrl(context.getString(R.string.backend_url))
+                    .addConverterFactory(GsonConverterFactory.create())
                     .build();
         }
         return retrofit;

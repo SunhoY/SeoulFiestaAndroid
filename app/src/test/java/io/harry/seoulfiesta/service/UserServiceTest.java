@@ -1,7 +1,5 @@
 package io.harry.seoulfiesta.service;
 
-import android.app.Service;
-
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -16,7 +14,7 @@ import javax.inject.Inject;
 import io.harry.seoulfiesta.BaseTest;
 import io.harry.seoulfiesta.BuildConfig;
 import io.harry.seoulfiesta.api.UserApi;
-import io.harry.seoulfiesta.model.User;
+import io.harry.seoulfiesta.model.json.User;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -41,14 +39,20 @@ public class UserServiceTest extends BaseTest {
     @Test
     public void login_callsLoginApiOnUserApi_runsSuccessCallback_onSuccess() throws Exception {
         ServiceCallback mockServiceCallback = mock(ServiceCallback.class);
-        User user = new User("harry", "secure");
+        User user = new User();
+        user.userName = "harry";
+        user.password = "secure";
+
         Call<User> mockCall = mock(Call.class);
         when(userApi.userLogin(user)).thenReturn(mockCall);
         subject.login("harry", "secure", mockServiceCallback);
 
         verify(userApi).userLogin(user);
         verify(mockCall).enqueue(userCallbackCaptor.capture());
-        User responseBody = new User("harry", "@!#");
+        User responseBody = new User();
+        user.userName = "harry";
+        user.password = "!@";
+
         Response<User> response = Response.success(responseBody);
         userCallbackCaptor.getValue().onResponse(mockCall, response);
 

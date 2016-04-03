@@ -5,7 +5,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
 import butterknife.ButterKnife;
-import io.harry.seoulfiesta.SeoulFiestaApplication;
 
 public class BaseActivity extends AppCompatActivity {
 
@@ -17,7 +16,6 @@ public class BaseActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ButterKnife.bind(this);
-        SeoulFiestaApplication.inject(this);
     }
 
 

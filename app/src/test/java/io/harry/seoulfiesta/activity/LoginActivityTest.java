@@ -22,7 +22,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import io.harry.seoulfiesta.BuildConfig;
 import io.harry.seoulfiesta.R;
-import io.harry.seoulfiesta.model.User;
+import io.harry.seoulfiesta.model.json.User;
 import io.harry.seoulfiesta.service.ServiceCallback;
 import io.harry.seoulfiesta.service.UserService;
 
@@ -70,7 +70,10 @@ public class LoginActivityTest {
         login.performClick();
 
         verify(userService).login(eq("harry"), eq("1qaz"), userServiceCallbackCaptor.capture());
-        userServiceCallbackCaptor.getValue().onSuccess(new User("harry", "1qaz"));
+        User user = new User();
+        user.userName = "harry";
+        user.password = "1qaz";
+        userServiceCallbackCaptor.getValue().onSuccess(user);
 
         Intent actualActivity = shadowOf(subject).getNextStartedActivity();
         Intent expectedActivity = new Intent(subject, MenuActivity.class);
