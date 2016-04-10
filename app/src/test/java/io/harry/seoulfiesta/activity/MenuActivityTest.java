@@ -22,7 +22,7 @@ import static org.robolectric.Shadows.shadowOf;
 public class MenuActivityTest {
     MenuActivity subject;
 
-    @Bind(R.id.day_off) TextView dayOff;
+    @Bind(R.id.days_off) TextView dayOff;
 
     @Test
     public void onRequestDayOffClick_launchesDayOffRequestActivity() throws Exception {

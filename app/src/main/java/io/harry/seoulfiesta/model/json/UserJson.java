@@ -1,6 +1,6 @@
 package io.harry.seoulfiesta.model.json;
 
-public class User {
+public class UserJson {
     public String password;
     public String userName;
     public String department;
@@ -13,17 +13,17 @@ public class User {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        User user = (User) o;
+        UserJson userJson = (UserJson) o;
 
-        if (id != user.id) return false;
-        if (password != null ? !password.equals(user.password) : user.password != null)
+        if (id != userJson.id) return false;
+        if (password != null ? !password.equals(userJson.password) : userJson.password != null)
             return false;
-        if (userName != null ? !userName.equals(user.userName) : user.userName != null)
+        if (userName != null ? !userName.equals(userJson.userName) : userJson.userName != null)
             return false;
-        if (department != null ? !department.equals(user.department) : user.department != null)
+        if (department != null ? !department.equals(userJson.department) : userJson.department != null)
             return false;
-        if (rank != null ? !rank.equals(user.rank) : user.rank != null) return false;
-        return !(email != null ? !email.equals(user.email) : user.email != null);
+        if (rank != null ? !rank.equals(userJson.rank) : userJson.rank != null) return false;
+        return !(email != null ? !email.equals(userJson.email) : userJson.email != null);
 
     }
 

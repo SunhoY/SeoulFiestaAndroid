@@ -10,7 +10,7 @@
         android:layout_height="wrap_content"
         android:textSize="48sp"
         android:layout_marginTop="@dimen/marginToParent"
-        android:text="휴가 신청"
+        android:text="@string/request_day_off"
         android:textStyle="bold"
         android:textColor="@color/colorPrimary"
         android:gravity="center"
@@ -63,10 +63,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="18sp"
-            android:text="잔여 휴가일"
+            android:text="@string/remaining_days_off"
             />
         <TextView
-            android:id="@+id/remaining_vacations"
+            android:id="@+id/days_off"
             android:layout_marginStart="16dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

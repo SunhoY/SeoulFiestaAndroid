@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">SeoulFiesta</string>
+    <string name="remaining_days_off">잔여 휴가일</string>
+    <string name="request_day_off">휴가 신청</string>
 </resources>

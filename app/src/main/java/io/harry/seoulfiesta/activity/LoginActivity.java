@@ -13,7 +13,7 @@ import butterknife.OnClick;
 import butterknife.OnLongClick;
 import io.harry.seoulfiesta.R;
 import io.harry.seoulfiesta.SeoulFiestaApplication;
-import io.harry.seoulfiesta.model.json.User;
+import io.harry.seoulfiesta.model.json.UserJson;
 import io.harry.seoulfiesta.service.ServiceCallback;
 import io.harry.seoulfiesta.service.UserService;
 
@@ -28,15 +28,15 @@ public class LoginActivity extends BaseActivity {
 
     @OnClick(R.id.login)
     public void onLoginClick() {
-        userService.login(email.getText().toString(), password.getText().toString(), new ServiceCallback<User>() {
+        userService.login(email.getText().toString(), password.getText().toString(), new ServiceCallback<UserJson>() {
             @Override
-            public void onSuccess(User user) {
+            public void onSuccess(UserJson userJson) {
                 SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.putString("email", user.email);
-                editor.putString("rank", user.rank);
-                editor.putString("department", user.department);
-                editor.putString("userName", user.userName);
-                editor.putInt("id", user.id);
+                editor.putString("email", userJson.email);
+                editor.putString("rank", userJson.rank);
+                editor.putString("department", userJson.department);
+                editor.putString("userName", userJson.userName);
+                editor.putInt("id", userJson.id);
                 editor.apply();
 
                 startActivity(new Intent(LoginActivity.this, MenuActivity.class));

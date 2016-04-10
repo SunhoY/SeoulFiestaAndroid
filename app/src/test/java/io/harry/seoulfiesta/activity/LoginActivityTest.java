@@ -24,7 +24,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import io.harry.seoulfiesta.BuildConfig;
 import io.harry.seoulfiesta.R;
-import io.harry.seoulfiesta.model.json.User;
+import io.harry.seoulfiesta.model.json.UserJson;
 import io.harry.seoulfiesta.service.ServiceCallback;
 import io.harry.seoulfiesta.service.UserService;
 
@@ -51,7 +51,7 @@ public class LoginActivityTest {
     @Inject SharedPreferences sharedPreferences;
     @Mock SharedPreferences.Editor editor;
 
-    @Captor ArgumentCaptor<ServiceCallback<User>> userServiceCallbackCaptor;
+    @Captor ArgumentCaptor<ServiceCallback<UserJson>> userServiceCallbackCaptor;
 
     @Before
     public void setUp() throws Exception {
@@ -77,13 +77,13 @@ public class LoginActivityTest {
         login("harry@harry.io", "1qaz");
 
         verify(userService).login(eq("harry@harry.io"), eq("1qaz"), userServiceCallbackCaptor.capture());
-        User user = new User();
-        user.email = "harry@harry.io";
-        user.userName = "해리";
-        user.department = "사업부";
-        user.rank = "대리";
+        UserJson userJson = new UserJson();
+        userJson.email = "harry@harry.io";
+        userJson.userName = "해리";
+        userJson.department = "사업부";
+        userJson.rank = "대리";
 
-        userServiceCallbackCaptor.getValue().onSuccess(user);
+        userServiceCallbackCaptor.getValue().onSuccess(userJson);
 
         Intent actualActivity = shadowOf(subject).getNextStartedActivity();
         Intent expectedActivity = new Intent(subject, MenuActivity.class);
@@ -96,14 +96,14 @@ public class LoginActivityTest {
         login("harry@harry.io", "1qaz");
 
         verify(userService).login(eq("harry@harry.io"), eq("1qaz"), userServiceCallbackCaptor.capture());
-        User user = new User();
-        user.id = 43;
-        user.email = "harry@harry.io";
-        user.userName = "해리";
-        user.department = "사업부";
-        user.rank = "대리";
+        UserJson userJson = new UserJson();
+        userJson.id = 43;
+        userJson.email = "harry@harry.io";
+        userJson.userName = "해리";
+        userJson.department = "사업부";
+        userJson.rank = "대리";
 
-        userServiceCallbackCaptor.getValue().onSuccess(user);
+        userServiceCallbackCaptor.getValue().onSuccess(userJson);
 
         verify(sharedPreferences).edit();
         verify(editor).putInt("id", 43);
