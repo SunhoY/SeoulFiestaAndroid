@@ -29,7 +29,7 @@ public class TestSeoulFiestaApplication extends Application implements TestLifec
 
     @Override
     public void prepareTest(Object test) {
-        TestSeoulFiestaApplication.inject(test);
+
     }
 
     @Override

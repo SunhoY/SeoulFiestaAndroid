@@ -24,6 +24,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import io.harry.seoulfiesta.BuildConfig;
 import io.harry.seoulfiesta.R;
+import io.harry.seoulfiesta.TestSeoulFiestaApplication;
 import io.harry.seoulfiesta.model.json.UserJson;
 import io.harry.seoulfiesta.service.ServiceCallback;
 import io.harry.seoulfiesta.service.UserService;
@@ -56,6 +57,7 @@ public class LoginActivityTest {
     @Before
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
+        TestSeoulFiestaApplication.inject(this);
         when(sharedPreferences.edit()).thenReturn(editor);
         when(editor.putString(anyString(), anyString())).thenReturn(editor);
         when(editor.putInt(anyString(), anyInt())).thenReturn(editor);

@@ -2,4 +2,14 @@
     <string name="app_name">SeoulFiesta</string>
     <string name="remaining_days_off">잔여 휴가일</string>
     <string name="request_day_off">휴가 신청</string>
+    <string name="day_off_type_normal">일반 휴가</string>
+    <string name="day_off_type_family">경조 휴가</string>
+    <string name="day_off_type_official">공가(예비군)</string>
+    <string name="date_string">%1$d-%2$d-%3$d</string>
+
+    <string-array name="day_off_types">
+        <item>@string/day_off_type_normal</item>
+        <item>@string/day_off_type_official</item>
+        <item>@string/day_off_type_family</item>
+    </string-array>
 </resources>

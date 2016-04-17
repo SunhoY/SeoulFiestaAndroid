@@ -1,100 +1,159 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical">
-
-    <TextView
+    android:paddingStart="@dimen/marginToParent"
+    android:paddingEnd="@dimen/marginToParent"
+    >
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="48sp"
-        android:layout_marginTop="@dimen/marginToParent"
-        android:text="@string/request_day_off"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="48sp"
+            android:layout_marginTop="@dimen/marginToParent"
+            android:text="@string/request_day_off"
+            android:textStyle="bold"
+            android:textColor="@color/colorPrimary"
+            android:gravity="center"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="20dp"
+            android:gravity="end"
+            >
+            <TextView
+                android:id="@+id/department"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                tools:text="지주사업부"
+                />
+            <TextView
+                android:layout_marginStart="16dp"
+                android:id="@+id/rank"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                tools:text="대리"
+                />
+            <TextView
+                android:layout_marginStart="16dp"
+                android:id="@+id/user_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:text="양해리"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="20dp"
+            android:gravity="end"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:text="@string/remaining_days_off"
+                />
+            <TextView
+                android:id="@+id/days_off"
+                android:layout_marginStart="16dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                tools:text="10"
+                />
+            <TextView
+                android:layout_marginStart="16dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:text="일"
+                />
+        </LinearLayout>
+
+        <Spinner
+            android:id="@+id/day_off_type"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/primaryHeight"
+            />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/marginToParent"
+            >
+            <TextView
+                android:id="@+id/days_off_schedule"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="휴가 일자"
+                android:layout_centerVertical="true"
+                android:textSize="26sp"
+                android:layout_alignParentStart="true"
+                android:paddingEnd="10dp"
+                />
+            <TextView
+                android:id="@+id/days_off_start"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/ic_calendar"
+                android:layout_alignParentTop="true"
+                android:layout_toEndOf="@id/days_off_schedule"
+                android:gravity="center_vertical"
+                android:textSize="20sp"
+                android:drawablePadding="10dp"
+                android:hint="휴가 시작 일자"
+                tools:text="2016-04-11"/>
+            <TextView
+                android:id="@+id/days_off_end"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/ic_calendar"
+                android:layout_below="@id/days_off_start"
+                android:layout_toEndOf="@id/days_off_schedule"
+                android:gravity="center_vertical"
+                android:textSize="20sp"
+                android:drawablePadding="10dp"
+                android:hint="휴가 종료 일자"
+                tools:text="2016-04-11"/>
+        </RelativeLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/marginToParent"
+            android:text="휴가 사유"
+            android:textSize="26sp"
+            />
+        <EditText
+            android:id="@+id/reason"
+            android:lines="3"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/primaryHeight" />
+    </LinearLayout>
+    <Button
+        android:layout_width="300dp"
+        android:layout_centerHorizontal="true"
+        android:layout_height="@dimen/primaryHeight"
+        android:textSize="30sp"
+        android:background="@color/colorPrimary"
+        android:textColor="@android:color/white"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/marginToParent"
         android:textStyle="bold"
-        android:textColor="@color/colorPrimary"
-        android:gravity="center"
-        />
+        android:text="승인 요청"/>
+</RelativeLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="@dimen/marginToParent"
-        android:layout_marginStart="@dimen/marginToParent"
-        android:gravity="end"
-        >
-        <TextView
-            android:id="@+id/department"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="18sp"
-            tools:text="지주사업부"
-            />
-        <TextView
-            android:layout_marginStart="16dp"
-            android:id="@+id/rank"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="18sp"
-            tools:text="대리"
-            />
-        <TextView
-            android:layout_marginStart="16dp"
-            android:id="@+id/user_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="18sp"
-            android:text="양해리"
-            />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="@dimen/marginToParent"
-        android:layout_marginStart="@dimen/marginToParent"
-        android:gravity="end"
-        >
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="18sp"
-            android:text="@string/remaining_days_off"
-            />
-        <TextView
-            android:id="@+id/days_off"
-            android:layout_marginStart="16dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="18sp"
-            tools:text="10"
-            />
-        <TextView
-            android:layout_marginStart="16dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="18sp"
-            android:text="일"
-            />
-    </LinearLayout>
-
-    <!--<Spinner-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="@dimen/primaryHeight"-->
-        <!--android:layout_marginStart="@dimen/marginToParent"-->
-        <!--android:layout_marginEnd="@dimen/marginToParent"-->
-        <!--/>-->
-
-    <!--<DatePicker-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="@dimen/primaryHeight"-->
-        <!--/>-->
-    <!--<EditText-->
-        <!--android:lines="5"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="@dimen/primaryHeight" />-->
-</LinearLayout>

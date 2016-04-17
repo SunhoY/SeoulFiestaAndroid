@@ -14,6 +14,7 @@ import javax.inject.Inject;
 
 import io.harry.seoulfiesta.BaseTest;
 import io.harry.seoulfiesta.BuildConfig;
+import io.harry.seoulfiesta.TestSeoulFiestaApplication;
 import io.harry.seoulfiesta.api.UserApi;
 import io.harry.seoulfiesta.model.json.UserJson;
 import io.harry.seoulfiesta.testutil.RetrofitTestUtil;
@@ -38,6 +39,7 @@ public class UserServiceTest extends BaseTest {
     @Before
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
+        TestSeoulFiestaApplication.inject(this);
         when(userApi.userLogin(any(UserJson.class))).thenReturn(mockCall);
         when(userApi.getUser(anyInt())).thenReturn(mockCall);
         subject = new UserService();
