@@ -93,5 +93,18 @@ public class UserServiceTest extends BaseTest {
 
         verify(userApi).getUser(12);
         verify(mockCall).enqueue(userCallbackCaptor.capture());
+
+        UserJson responseBody = new UserJson();
+        responseBody.id = 23;
+        responseBody.userName = "양해리";
+        responseBody.email = "harry@harry.io";
+        responseBody.rank = "대리";
+        responseBody.department = "연구소";
+        responseBody.daysOff = 15;
+
+        Response<UserJson> response = Response.success(responseBody);
+        userCallbackCaptor.getValue().onResponse(mockCall, response);
+
+        verify(mockServiceCallback).onSuccess(15);
     }
 }

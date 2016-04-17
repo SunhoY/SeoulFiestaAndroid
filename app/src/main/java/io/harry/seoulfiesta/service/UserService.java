@@ -45,12 +45,12 @@ public class UserService {
 
     }
 
-    public void getDaysOffPerYear(int id, ServiceCallback<Integer> serviceCallback) {
+    public void getDaysOffPerYear(int id, final ServiceCallback<Integer> serviceCallback) {
         Call<UserJson> service = userApi.getUser(id);
         service.enqueue(new Callback<UserJson>() {
             @Override
             public void onResponse(Call<UserJson> call, Response<UserJson> response) {
-
+                serviceCallback.onSuccess(response.body().daysOff);
             }
 
             @Override
