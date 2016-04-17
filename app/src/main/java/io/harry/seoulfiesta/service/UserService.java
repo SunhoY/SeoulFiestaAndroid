@@ -50,7 +50,7 @@ public class UserService {
         service.enqueue(new Callback<UserJson>() {
             @Override
             public void onResponse(Call<UserJson> call, Response<UserJson> response) {
-                serviceCallback.onSuccess(response.body().daysOff);
+                serviceCallback.onSuccess(response.body().daysOffPerYear);
             }
 
             @Override

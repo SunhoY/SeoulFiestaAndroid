@@ -100,7 +100,7 @@ public class UserServiceTest extends BaseTest {
         responseBody.email = "harry@harry.io";
         responseBody.rank = "대리";
         responseBody.department = "연구소";
-        responseBody.daysOff = 15;
+        responseBody.daysOffPerYear = 15;
 
         Response<UserJson> response = Response.success(responseBody);
         userCallbackCaptor.getValue().onResponse(mockCall, response);
