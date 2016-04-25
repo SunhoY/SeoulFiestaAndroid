@@ -5,9 +5,11 @@ import android.content.SharedPreferences;
 
 import dagger.Module;
 import dagger.Provides;
-import io.harry.seoulfiesta.activity.DayOffActivity;
+import io.harry.seoulfiesta.activity.VacationActivity;
 import io.harry.seoulfiesta.activity.LoginActivity;
+import io.harry.seoulfiesta.api.VacationApi;
 import io.harry.seoulfiesta.api.UserApi;
+import io.harry.seoulfiesta.service.VacationService;
 import io.harry.seoulfiesta.service.UserService;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -15,7 +17,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 @Module(injects = {
         LoginActivity.class,
         UserService.class,
-        DayOffActivity.class,
+        VacationActivity.class,
+        VacationService.class,
 })
 public class ApplicationModule {
     public static final String SHARED_PREFERENCES_NAME = "SeoulFiesta";
@@ -27,7 +30,11 @@ public class ApplicationModule {
     }
 
     @Provides UserService provideUserService() { return new UserService(); }
+    @Provides
+    VacationService provideVacationService() {return new VacationService(context); }
     @Provides UserApi provideUserApi() { return getRetrofit().create(UserApi.class); }
+    @Provides
+    VacationApi provideVacationApi() {return getRetrofit().create(VacationApi.class); }
     @Provides
     SharedPreferences provideSharedPreferences() {
         return context.getSharedPreferences(SHARED_PREFERENCES_NAME, Context.MODE_PRIVATE);

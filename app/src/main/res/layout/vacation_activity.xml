@@ -17,7 +17,7 @@
             android:layout_height="wrap_content"
             android:textSize="48sp"
             android:layout_marginTop="@dimen/marginToParent"
-            android:text="@string/request_day_off"
+            android:text="@string/request_vacation"
             android:textStyle="bold"
             android:textColor="@color/colorPrimary"
             android:gravity="center"
@@ -66,10 +66,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="18sp"
-                android:text="@string/remaining_days_off"
+                android:text="@string/remaining_vacations"
                 />
             <TextView
-                android:id="@+id/days_off"
+                android:id="@+id/vacations_per_year"
                 android:layout_marginStart="16dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -86,7 +86,7 @@
         </LinearLayout>
 
         <Spinner
-            android:id="@+id/day_off_type"
+            android:id="@+id/vacation_type"
             android:layout_width="match_parent"
             android:layout_height="@dimen/primaryHeight"
             />
@@ -97,7 +97,7 @@
             android:layout_marginTop="@dimen/marginToParent"
             >
             <TextView
-                android:id="@+id/days_off_schedule"
+                android:id="@+id/vacation_schedule"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="휴가 일자"
@@ -107,24 +107,24 @@
                 android:paddingEnd="10dp"
                 />
             <TextView
-                android:id="@+id/days_off_start"
+                android:id="@+id/vacation_start"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawableStart="@drawable/ic_calendar"
                 android:layout_alignParentTop="true"
-                android:layout_toEndOf="@id/days_off_schedule"
+                android:layout_toEndOf="@id/vacation_schedule"
                 android:gravity="center_vertical"
                 android:textSize="20sp"
                 android:drawablePadding="10dp"
                 android:hint="휴가 시작 일자"
                 tools:text="2016-04-11"/>
             <TextView
-                android:id="@+id/days_off_end"
+                android:id="@+id/vacation_end"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawableStart="@drawable/ic_calendar"
-                android:layout_below="@id/days_off_start"
-                android:layout_toEndOf="@id/days_off_schedule"
+                android:layout_below="@id/vacation_start"
+                android:layout_toEndOf="@id/vacation_schedule"
                 android:gravity="center_vertical"
                 android:textSize="20sp"
                 android:drawablePadding="10dp"
@@ -145,6 +145,7 @@
             android:layout_height="@dimen/primaryHeight" />
     </LinearLayout>
     <Button
+        android:id="@+id/save"
         android:layout_width="300dp"
         android:layout_centerHorizontal="true"
         android:layout_height="@dimen/primaryHeight"

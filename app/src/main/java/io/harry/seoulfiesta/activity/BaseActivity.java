@@ -19,6 +19,4 @@ public class BaseActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
     }
-
-
 }

@@ -7,7 +7,7 @@ public class UserJson {
     public String rank;
     public String email;
     public int id;
-    public int daysOffPerYear;
+    public int vacationsPerYear;
 
     @Override
     public boolean equals(Object o) {
@@ -17,7 +17,7 @@ public class UserJson {
         UserJson userJson = (UserJson) o;
 
         if (id != userJson.id) return false;
-        if (daysOffPerYear != userJson.daysOffPerYear) return false;
+        if (vacationsPerYear != userJson.vacationsPerYear) return false;
         if (password != null ? !password.equals(userJson.password) : userJson.password != null)
             return false;
         if (userName != null ? !userName.equals(userJson.userName) : userJson.userName != null)
@@ -37,7 +37,7 @@ public class UserJson {
         result = 31 * result + (rank != null ? rank.hashCode() : 0);
         result = 31 * result + (email != null ? email.hashCode() : 0);
         result = 31 * result + id;
-        result = 31 * result + daysOffPerYear;
+        result = 31 * result + vacationsPerYear;
         return result;
     }
 }

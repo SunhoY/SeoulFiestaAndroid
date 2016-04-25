@@ -10,7 +10,7 @@ import io.harry.seoulfiesta.R;
 
 public class MenuActivity extends BaseActivity {
 
-    @Bind(R.id.days_off) TextView dayOff;
+    @Bind(R.id.vacation) TextView vacation;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -18,8 +18,8 @@ public class MenuActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
     }
 
-    @OnClick(R.id.days_off)
-    public void onDayOffClick() {
-        startActivity(new Intent(this, DayOffActivity.class));
+    @OnClick(R.id.vacation)
+    public void onVacationClick() {
+        startActivity(new Intent(this, VacationActivity.class));
     }
 }

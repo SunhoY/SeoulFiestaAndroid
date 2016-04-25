@@ -47,7 +47,7 @@ public class UserServiceTest extends BaseTest {
 
     @Test
     public void login_callsLoginApiOnUserApi_runsSuccessCallback_onSuccess() throws Exception {
-        ServiceCallback mockServiceCallback = mock(ServiceCallback.class);
+        ServiceCallback<UserJson> mockServiceCallback = mock(ServiceCallback.class);
         UserJson userJson = new UserJson();
         userJson.email = "harry@harry.io";
         userJson.password = "secure";
@@ -89,9 +89,9 @@ public class UserServiceTest extends BaseTest {
     }
 
     @Test
-    public void getDaysOffPerYear_callsUserApi_runsSuccessCallback_onSuccess() throws Exception {
+    public void getVacationsPerYear_callsUserApi_runsSuccessCallback_onSuccess() throws Exception {
         ServiceCallback mockServiceCallback = mock(ServiceCallback.class);
-        subject.getDaysOffPerYear(12, mockServiceCallback);
+        subject.getVacationsPerYear(12, mockServiceCallback);
 
         verify(userApi).getUser(12);
         verify(mockCall).enqueue(userCallbackCaptor.capture());
@@ -102,7 +102,7 @@ public class UserServiceTest extends BaseTest {
         responseBody.email = "harry@harry.io";
         responseBody.rank = "대리";
         responseBody.department = "연구소";
-        responseBody.daysOffPerYear = 15;
+        responseBody.vacationsPerYear = 15;
 
         Response<UserJson> response = Response.success(responseBody);
         userCallbackCaptor.getValue().onResponse(mockCall, response);
