@@ -4,10 +4,9 @@ import org.joda.time.DateTime;
 
 public class VacationJson {
     public String type;
-    public DateTime date;
     public int userId;
-    public DateTime startDate;
-    public DateTime endDate;
+    public String startDate;
+    public String endDate;
     public String reason;
 
     @Override
@@ -19,7 +18,6 @@ public class VacationJson {
 
         if (userId != that.userId) return false;
         if (type != null ? !type.equals(that.type) : that.type != null) return false;
-        if (date != null ? !date.equals(that.date) : that.date != null) return false;
         if (startDate != null ? !startDate.equals(that.startDate) : that.startDate != null)
             return false;
         if (endDate != null ? !endDate.equals(that.endDate) : that.endDate != null) return false;
@@ -30,7 +28,6 @@ public class VacationJson {
     @Override
     public int hashCode() {
         int result = type != null ? type.hashCode() : 0;
-        result = 31 * result + (date != null ? date.hashCode() : 0);
         result = 31 * result + userId;
         result = 31 * result + (startDate != null ? startDate.hashCode() : 0);
         result = 31 * result + (endDate != null ? endDate.hashCode() : 0);

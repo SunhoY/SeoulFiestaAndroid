@@ -18,6 +18,7 @@ public class VacationService {
     public static final String VACATION_TYPE_NORMAL = "normal";
     public static final String VACATION_TYPE_FAMILY = "family";
     public static final String VACATION_TYPE_OFFICIAL = "official";
+    public static final String YYYY_MM_DD = "yyyy-MM-dd";
 
     private final Context context;
 
@@ -36,7 +37,12 @@ public class VacationService {
         voidCall.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
-                serviceCallback.onSuccess(null);
+                if(response.isSuccessful()) {
+                    serviceCallback.onSuccess(null);
+                }
+                else {
+
+                }
             }
 
             @Override
@@ -58,8 +64,8 @@ public class VacationService {
             vacationJson.type = VACATION_TYPE_OFFICIAL;
         }
 
-        vacationJson.startDate = vacation.getStart();
-        vacationJson.endDate = vacation.getEnd();
+        vacationJson.startDate = vacation.getStart().toString(YYYY_MM_DD);
+        vacationJson.endDate = vacation.getEnd().toString(YYYY_MM_DD);
         vacationJson.reason = vacation.getReason();
         return vacationJson;
     }
