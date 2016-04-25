@@ -23,6 +23,7 @@ import io.harry.seoulfiesta.model.Vacation;
 import io.harry.seoulfiesta.model.json.VacationJson;
 import retrofit2.Call;
 import retrofit2.Callback;
+import retrofit2.Response;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Matchers.any;
@@ -68,15 +69,17 @@ public class VacationServiceTest {
 
         VacationJson vacationJson = new VacationJson();
         vacationJson.type = "normal";
-        vacationJson.startDate = DATE_2016_6_19;
-        vacationJson.endDate = DATE_2016_6_22;
+        vacationJson.startDate = DATE_2016_6_19.toString("yyyy-MM-dd");
+        vacationJson.endDate = DATE_2016_6_22.toString("yyyy-MM-dd");
         vacationJson.reason = "아파서\n쉽니다.";
         vacationJson.userId = 23;
 
         verify(mockVacationApi).postVacation(vacationJson);
         verify(mockVoidCall).enqueue(voidCallbackCaptor.capture());
 
-        voidCallbackCaptor.getValue().onResponse(mockVoidCall, null);
+        Response<Void> response = Response.success(null);
+
+        voidCallbackCaptor.getValue().onResponse(mockVoidCall, response);
 
         verify(mockServiceCallback).onSuccess(null);
     }
@@ -88,8 +91,8 @@ public class VacationServiceTest {
 
         assertThat(vacationJson.userId).isEqualTo(23);
         assertThat(vacationJson.type).isEqualTo("normal");
-        assertThat(vacationJson.startDate).isEqualTo(DATE_2016_6_19);
-        assertThat(vacationJson.endDate).isEqualTo(DATE_2016_6_22);
+        assertThat(vacationJson.startDate).isEqualTo(DATE_2016_6_19.toString("yyyy-MM-dd"));
+        assertThat(vacationJson.endDate).isEqualTo(DATE_2016_6_22.toString("yyyy-MM-dd"));
         assertThat(vacationJson.reason).isEqualTo("아파서\n쉽니다.");
 
         Vacation family = new Vacation(23, "경조 휴가", DATE_2016_6_19, DATE_2016_6_22, "아파서\n쉽니다.");
