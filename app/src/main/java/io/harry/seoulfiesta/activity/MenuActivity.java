@@ -9,8 +9,8 @@ import butterknife.OnClick;
 import io.harry.seoulfiesta.R;
 
 public class MenuActivity extends BaseActivity {
-
-    @Bind(R.id.vacation) TextView vacation;
+    @Bind(R.id.vacation)
+    TextView vacation;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -20,6 +20,6 @@ public class MenuActivity extends BaseActivity {
 
     @OnClick(R.id.vacation)
     public void onVacationClick() {
-        startActivity(new Intent(this, VacationActivity.class));
+        startActivity(new Intent(this, VacationMenuActivity.class));
     }
 }

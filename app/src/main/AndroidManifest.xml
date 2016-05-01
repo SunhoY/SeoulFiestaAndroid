@@ -21,5 +21,7 @@
         </activity>
         <activity android:name=".activity.MenuActivity"/>
         <activity android:name=".activity.VacationActivity"/>
+        <activity android:name=".activity.VacationMenuActivity"/>
+        <activity android:name=".activity.VacationListActivity"/>
     </application>
 </manifest>

@@ -1,11 +1,22 @@
 <resources>
-    <string name="app_name">SeoulFiesta</string>
+    <string name="app_name">Seoul Fiesta</string>
     <string name="remaining_vacations">잔여 휴가일</string>
     <string name="request_vacation">휴가 신청</string>
     <string name="vacation_type_normal">일반 휴가</string>
     <string name="vacation_type_family">경조 휴가</string>
     <string name="vacation_type_official">공가(예비군)</string>
     <string name="date_string">%1$d-%2$d-%3$d</string>
+    <string name="vacation_request_log">휴가 신청 내역</string>
+    <string name="do_request_vacation">휴가 신청하기</string>
+    <string name="view_vacation_log">휴가 내역 보기</string>
+    <string name="email_address">email address</string>
+    <string name="password">password</string>
+    <string name="login">로그인</string>
+    <string name="days">일</string>
+    <string name="vacation_period">휴가 일자</string>
+    <string name="vacation_reason">휴가 사유</string>
+    <string name="request_approval">승인 요청</string>
+    <string name="enter_reason_of_vacation">휴가 사유를 입력하세요.</string>
 
     <string-array name="vacation_types">
         <item>@string/vacation_type_normal</item>

@@ -11,6 +11,8 @@ import io.harry.seoulfiesta.activity.VacationActivityTest;
 import io.harry.seoulfiesta.activity.LoginActivity;
 import io.harry.seoulfiesta.activity.LoginActivityTest;
 import io.harry.seoulfiesta.activity.MenuActivityTest;
+import io.harry.seoulfiesta.activity.VacationListActivity;
+import io.harry.seoulfiesta.activity.VacationListActivityTest;
 import io.harry.seoulfiesta.api.VacationApi;
 import io.harry.seoulfiesta.api.UserApi;
 import io.harry.seoulfiesta.service.VacationService;
@@ -29,7 +31,9 @@ import static org.mockito.Mockito.mock;
         VacationActivity.class,
         VacationActivityTest.class,
         VacationService.class,
-        VacationServiceTest.class
+        VacationServiceTest.class,
+        VacationListActivity.class,
+        VacationListActivityTest.class,
 })
 public class TestApplicationModule {
     @Provides @Singleton UserService provideUserService() { return mock(UserService.class); }

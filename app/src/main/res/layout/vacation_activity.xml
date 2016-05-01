@@ -13,14 +13,8 @@
         android:orientation="vertical">
 
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="48sp"
-            android:layout_marginTop="@dimen/marginToParent"
             android:text="@string/request_vacation"
-            android:textStyle="bold"
-            android:textColor="@color/colorPrimary"
-            android:gravity="center"
+            style="@style/AppTheme.PrimaryTitleTextView"
             />
 
         <LinearLayout
@@ -51,7 +45,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="18sp"
-                android:text="양해리"
+                tools:text="양해리"
                 />
         </LinearLayout>
 
@@ -81,7 +75,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="18sp"
-                android:text="일"
+                android:text="@string/days"
                 />
         </LinearLayout>
 
@@ -100,11 +94,11 @@
                 android:id="@+id/vacation_schedule"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="휴가 일자"
+                android:text="@string/vacation_period"
                 android:layout_centerVertical="true"
                 android:textSize="26sp"
                 android:layout_alignParentStart="true"
-                android:paddingEnd="10dp"
+                android:layout_marginEnd="10dp"
                 />
             <TextView
                 android:id="@+id/vacation_start"
@@ -116,7 +110,6 @@
                 android:gravity="center_vertical"
                 android:textSize="20sp"
                 android:drawablePadding="10dp"
-                android:hint="휴가 시작 일자"
                 tools:text="2016-04-11"/>
             <TextView
                 android:id="@+id/vacation_end"
@@ -128,19 +121,19 @@
                 android:gravity="center_vertical"
                 android:textSize="20sp"
                 android:drawablePadding="10dp"
-                android:hint="휴가 종료 일자"
                 tools:text="2016-04-11"/>
         </RelativeLayout>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/marginToParent"
-            android:text="휴가 사유"
+            android:text="@string/vacation_reason"
             android:textSize="26sp"
             />
         <EditText
             android:id="@+id/reason"
             android:lines="3"
+            android:hint="@string/enter_reason_of_vacation"
             android:layout_width="match_parent"
             android:layout_height="@dimen/primaryHeight" />
     </LinearLayout>
@@ -155,6 +148,6 @@
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="@dimen/marginToParent"
         android:textStyle="bold"
-        android:text="승인 요청"/>
+        android:text="@string/request_approval"/>
 </RelativeLayout>
 

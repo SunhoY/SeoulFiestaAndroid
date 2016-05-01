@@ -25,13 +25,13 @@ public class MenuActivityTest {
     @Bind(R.id.vacation) TextView vacation;
 
     @Test
-    public void onRequestDayOffClick_launchesDayOffRequestActivity() throws Exception {
+    public void onRequestDayOffClick_launchesVacationMenuActivity() throws Exception {
         subject = Robolectric.setupActivity(MenuActivity.class);
         ButterKnife.bind(this, subject);
 
         vacation.performClick();
 
-        Intent expected = new Intent(subject, VacationActivity.class);
+        Intent expected = new Intent(subject, VacationMenuActivity.class);
         Intent actual = shadowOf(subject).getNextStartedActivity();
 
         assertThat(actual).isEqualTo(expected);

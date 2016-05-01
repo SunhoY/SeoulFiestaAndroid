@@ -3,12 +3,15 @@ package io.harry.seoulfiesta.service;
 import android.content.Context;
 import android.support.annotation.NonNull;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import io.harry.seoulfiesta.R;
 import io.harry.seoulfiesta.SeoulFiestaApplication;
 import io.harry.seoulfiesta.api.VacationApi;
 import io.harry.seoulfiesta.model.Vacation;
+import io.harry.seoulfiesta.model.VacationItem;
 import io.harry.seoulfiesta.model.json.VacationJson;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -50,6 +53,10 @@ public class VacationService {
 
             }
         });
+    }
+
+    public void getVacations(ServiceCallback<List<VacationItem>> serviceCallback) {
+
     }
 
     private VacationJson getVacationJson(Vacation vacation) {

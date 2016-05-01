@@ -42,6 +42,7 @@ dependencies {
     compile 'com.squareup.retrofit2:retrofit:2.0.0'
     compile 'com.squareup.retrofit2:converter-gson:2.0.0'
     compile 'joda-time:joda-time:2.9.3'
+    compile 'com.android.support:recyclerview-v7:23.2.1'
     provided 'com.squareup.dagger:dagger-compiler:+'
 
     testCompile 'junit:junit:4.12'

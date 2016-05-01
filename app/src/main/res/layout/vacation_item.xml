@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:padding="10dp"
+    >
+    <TextView
+        android:id="@+id/date"
+        android:layout_width="140dp"
+        android:layout_height="wrap_content"
+        android:textSize="24sp"
+        tools:text="2016-06-19"
+        android:layout_marginEnd="10dp"
+        />
+
+    <TextView
+        android:id="@+id/vacation_type"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="24sp"
+        android:layout_toEndOf="@id/date"
+        tools:text="일반 휴가"
+        />
+
+    <TextView
+        android:id="@+id/vacation_status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:textSize="24sp"
+        tools:text="승인"
+        />
+
+</RelativeLayout>
