@@ -76,7 +76,7 @@ public class VacationListAdapterTest {
         DateTime baseDate = new DateTime(2016, 6, 19, 8, 0);
         List<VacationItem> result = new ArrayList<>();
         for(int i = 0; i < count; ++i) {
-            VacationItem vacationItem = new VacationItem(20, vacationStatus[i%3], baseDate.plusDays(i), vacationTypes[i%3]);
+            VacationItem vacationItem = new VacationItem(vacationTypes[i%3], vacationStatus[i%3], baseDate.plusDays(i).toString("yyyy-MM-dd"));
             result.add(vacationItem);
         }
         return result;

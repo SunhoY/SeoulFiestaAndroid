@@ -23,9 +23,9 @@ public class VacationListAdapter extends RecyclerView.Adapter<VacationListAdapte
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         VacationItem vacationItem = this.vacationItems.get(position);
-        holder.date.setText(vacationItem.getDateString());
-        holder.status.setText(vacationItem.getStatus());
-        holder.type.setText(vacationItem.getType());
+        holder.date.setText(vacationItem.getVacationDate());
+        holder.status.setText(vacationItem.getVacationStatus());
+        holder.type.setText(vacationItem.getVacationType());
     }
 
     @Override

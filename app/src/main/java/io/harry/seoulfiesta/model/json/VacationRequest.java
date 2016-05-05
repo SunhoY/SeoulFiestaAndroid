@@ -1,8 +1,6 @@
 package io.harry.seoulfiesta.model.json;
 
-import org.joda.time.DateTime;
-
-public class VacationJson {
+public class VacationRequest {
     public String type;
     public int userId;
     public String startDate;
@@ -14,7 +12,7 @@ public class VacationJson {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        VacationJson that = (VacationJson) o;
+        VacationRequest that = (VacationRequest) o;
 
         if (userId != that.userId) return false;
         if (type != null ? !type.equals(that.type) : that.type != null) return false;

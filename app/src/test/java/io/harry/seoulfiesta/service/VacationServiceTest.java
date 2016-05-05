@@ -13,6 +13,9 @@ import org.robolectric.RuntimeEnvironment;
 import org.robolectric.annotation.Config;
 
 import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -20,7 +23,10 @@ import io.harry.seoulfiesta.BuildConfig;
 import io.harry.seoulfiesta.TestSeoulFiestaApplication;
 import io.harry.seoulfiesta.api.VacationApi;
 import io.harry.seoulfiesta.model.Vacation;
-import io.harry.seoulfiesta.model.json.VacationJson;
+import io.harry.seoulfiesta.model.VacationItem;
+import io.harry.seoulfiesta.model.json.VacationItemResponse;
+import io.harry.seoulfiesta.model.json.VacationRequest;
+import io.harry.seoulfiesta.model.json.VacationResponse;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -45,16 +51,24 @@ public class VacationServiceTest {
     ServiceCallback<Void> mockServiceCallback;
     @Mock
     Call<Void> mockVoidCall;
+    @Mock
+    ServiceCallback<List<VacationItem>> mockVacationItemServiceCallback;
+    @Mock
+    Call<List<VacationResponse>> mockVacationCall;
 
     @Captor
     ArgumentCaptor<Callback<Void>> voidCallbackCaptor;
+    @Captor
+    ArgumentCaptor<Callback<List<VacationResponse>>> vacationResponsesCallbackCaptor;
+
     private Method getVacationJson;
 
     @Before
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
         TestSeoulFiestaApplication.inject(this);
-        when(mockVacationApi.postVacation(any(VacationJson.class))).thenReturn(mockVoidCall);
+        when(mockVacationApi.postVacation(any(VacationRequest.class))).thenReturn(mockVoidCall);
+        when(mockVacationApi.getVacations()).thenReturn(mockVacationCall);
 
         getVacationJson = VacationService.class.getDeclaredMethod("getVacationJson", Vacation.class);
         getVacationJson.setAccessible(true);
@@ -63,18 +77,18 @@ public class VacationServiceTest {
     }
 
     @Test
-    public void postVacation_callsPostDaysOffApi_withDaysOffJsonList() throws Exception {
+    public void postVacation_callsPostVacationApi_withDaysOffJsonList() throws Exception {
         Vacation vacation = new Vacation(23, "일반 휴가", DATE_2016_6_19, DATE_2016_6_22, "아파서\n쉽니다.");
         subject.postVacation(vacation, mockServiceCallback);
 
-        VacationJson vacationJson = new VacationJson();
-        vacationJson.type = "normal";
-        vacationJson.startDate = DATE_2016_6_19.toString("yyyy-MM-dd");
-        vacationJson.endDate = DATE_2016_6_22.toString("yyyy-MM-dd");
-        vacationJson.reason = "아파서\n쉽니다.";
-        vacationJson.userId = 23;
+        VacationRequest vacationRequest = new VacationRequest();
+        vacationRequest.type = "normal";
+        vacationRequest.startDate = DATE_2016_6_19.toString("yyyy-MM-dd");
+        vacationRequest.endDate = DATE_2016_6_22.toString("yyyy-MM-dd");
+        vacationRequest.reason = "아파서\n쉽니다.";
+        vacationRequest.userId = 23;
 
-        verify(mockVacationApi).postVacation(vacationJson);
+        verify(mockVacationApi).postVacation(vacationRequest);
         verify(mockVoidCall).enqueue(voidCallbackCaptor.capture());
 
         Response<Void> response = Response.success(null);
@@ -85,9 +99,42 @@ public class VacationServiceTest {
     }
 
     @Test
+    public void getVacations_callsGetVacationApi_runsSuccessCallback_whenSuccess() throws Exception {
+        subject.getVacations(mockVacationItemServiceCallback);
+
+        verify(mockVacationApi).getVacations();
+        verify(mockVacationCall).enqueue(vacationResponsesCallbackCaptor.capture());
+
+        VacationResponse normal = getVacationResponsesWithItemCount("requested", "normal", 2);
+        VacationResponse family = getVacationResponsesWithItemCount("requested", "family", 3);
+        List<VacationResponse> vacationResponses = new ArrayList<>();
+        vacationResponses.addAll(Arrays.asList(normal, family));
+
+        Response<List<VacationResponse>> success = Response.success(vacationResponses);
+
+        vacationResponsesCallbackCaptor.getValue().onResponse(mockVacationCall, success);
+
+        List<VacationItem> vacationItems = new ArrayList<>();
+        for(int i = 0; i < 2; ++i) {
+            vacationItems.add(
+                    new VacationItem(normal.vacationType,
+                            normal.vacationStatus,
+                            normal.vacationItems.get(i).vacationDate));
+        }
+        for(int i = 0; i < 3; ++i) {
+            vacationItems.add(
+                    new VacationItem(family.vacationType,
+                            family.vacationStatus,
+                            family.vacationItems.get(i).vacationDate));
+        }
+
+        verify(mockVacationItemServiceCallback).onSuccess(vacationItems);
+    }
+
+    @Test
     public void getVacationJson_createsJsonObject_dependsOnParameters() throws Exception {
         Vacation normal = new Vacation(23, "일반 휴가", DATE_2016_6_19, DATE_2016_6_22, "아파서\n쉽니다.");
-        VacationJson vacationJson = (VacationJson) getVacationJson.invoke(subject, normal);
+        VacationRequest vacationJson = (VacationRequest) getVacationJson.invoke(subject, normal);
 
         assertThat(vacationJson.userId).isEqualTo(23);
         assertThat(vacationJson.type).isEqualTo("normal");
@@ -96,13 +143,31 @@ public class VacationServiceTest {
         assertThat(vacationJson.reason).isEqualTo("아파서\n쉽니다.");
 
         Vacation family = new Vacation(23, "경조 휴가", DATE_2016_6_19, DATE_2016_6_22, "아파서\n쉽니다.");
-        vacationJson = (VacationJson) getVacationJson.invoke(subject, family);
+        vacationJson = (VacationRequest) getVacationJson.invoke(subject, family);
 
         assertThat(vacationJson.type).isEqualTo("family");
 
         Vacation official = new Vacation(23, "공가(예비군)", DATE_2016_6_19, DATE_2016_6_22, "아파서\n쉽니다.");
-        vacationJson = (VacationJson) getVacationJson.invoke(subject, official);
+        vacationJson = (VacationRequest) getVacationJson.invoke(subject, official);
 
         assertThat(vacationJson.type).isEqualTo("official");
     }
+
+    private VacationResponse getVacationResponsesWithItemCount(String status, String type, int count) {
+        String baseDate = "2016-06-1";
+        String time = "00:00:00";
+
+        VacationResponse vacationResponse = new VacationResponse();
+        vacationResponse.vacationType = type;
+        vacationResponse.vacationStatus = status;
+        vacationResponse.vacationItems = new ArrayList<>();
+
+        for(int i = 0; i < count; ++i) {
+            VacationItemResponse vacationItemResponse = new VacationItemResponse();
+            vacationItemResponse.vacationDate = baseDate + i + " " + time;
+            vacationResponse.vacationItems.add(vacationItemResponse);
+        }
+        return vacationResponse;
+    }
+
 }

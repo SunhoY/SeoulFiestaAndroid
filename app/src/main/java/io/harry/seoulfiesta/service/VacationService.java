@@ -3,6 +3,7 @@ package io.harry.seoulfiesta.service;
 import android.content.Context;
 import android.support.annotation.NonNull;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -12,7 +13,9 @@ import io.harry.seoulfiesta.SeoulFiestaApplication;
 import io.harry.seoulfiesta.api.VacationApi;
 import io.harry.seoulfiesta.model.Vacation;
 import io.harry.seoulfiesta.model.VacationItem;
-import io.harry.seoulfiesta.model.json.VacationJson;
+import io.harry.seoulfiesta.model.json.VacationItemResponse;
+import io.harry.seoulfiesta.model.json.VacationRequest;
+import io.harry.seoulfiesta.model.json.VacationResponse;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -34,7 +37,7 @@ public class VacationService {
     }
 
     public void postVacation(Vacation vacation, final ServiceCallback<Void> serviceCallback) {
-        VacationJson vacationJson = getVacationJson(vacation);
+        VacationRequest vacationJson = getVacationJson(vacation);
 
         Call<Void> voidCall = vacationApi.postVacation(vacationJson);
         voidCall.enqueue(new Callback<Void>() {
@@ -42,9 +45,6 @@ public class VacationService {
             public void onResponse(Call<Void> call, Response<Void> response) {
                 if(response.isSuccessful()) {
                     serviceCallback.onSuccess(null);
-                }
-                else {
-
                 }
             }
 
@@ -55,12 +55,32 @@ public class VacationService {
         });
     }
 
-    public void getVacations(ServiceCallback<List<VacationItem>> serviceCallback) {
+    public void getVacations(final ServiceCallback<List<VacationItem>> serviceCallback) {
+        Call<List<VacationResponse>> call = vacationApi.getVacations();
+        call.enqueue(new Callback<List<VacationResponse>>() {
+            @Override
+            public void onResponse(Call<List<VacationResponse>> call, Response<List<VacationResponse>> response) {
+                List<VacationResponse> vacationResponses = response.body();
 
+                List<VacationItem> vacationItems = new ArrayList<>();
+                for(VacationResponse vacationResponse : vacationResponses) {
+                    for(VacationItemResponse vacationItemResponse: vacationResponse.vacationItems) {
+                        vacationItems.add(new VacationItem(vacationResponse.vacationType, vacationResponse.vacationStatus, vacationItemResponse.vacationDate));
+                    }
+                }
+
+                serviceCallback.onSuccess(vacationItems);
+            }
+
+            @Override
+            public void onFailure(Call<List<VacationResponse>> call, Throwable t) {
+
+            }
+        });
     }
 
-    private VacationJson getVacationJson(Vacation vacation) {
-        VacationJson vacationJson = new VacationJson();
+    private VacationRequest getVacationJson(Vacation vacation) {
+        VacationRequest vacationJson = new VacationRequest();
 
         vacationJson.userId = vacation.getUserId();
         if(vacation.getType().equals(getString(R.string.vacation_type_normal))) {
